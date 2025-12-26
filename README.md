@@ -1,10 +1,10 @@
 # Portfolio
 
-A minimal, professional portfolio website built with Astro showcasing backend development expertise, database design, and full-stack projects.
+A minimal, professional portfolio website built with Astro showcasing full-stack development expertise and personal projects.
 
 ## Overview
 
-This portfolio website highlights 3 years of experience building production-ready applications in health tech and crowdfunding platforms. The site features a clean, minimal design that emphasizes technical expertise while maintaining a polished frontend interface.
+This portfolio website features a clean, minimal design with a focus on simplicity and elegance. The site includes a personal bio, contact information, and supports both light and dark themes.
 
 ## Tech Stack
 
@@ -15,50 +15,50 @@ This portfolio website highlights 3 years of experience building production-read
 
 ## Features
 
-- **Home/About Me**: Highlights backend-heavy experience and full-stack capabilities
-- **Projects**: Showcases 7 production applications with detailed information
-- **Contact**: Email and social media links (GitHub, LinkedIn)
-- **Responsive Design**: Mobile-friendly layout that works on all devices
 - **Minimal Design**: Clean, professional interface with neutral colors
+- **Light/Dark Theme**: Toggle between light and dark modes with theme persistence
+- **Responsive Design**: Mobile-friendly layout that works on all devices
+- **Personal Bio**: Multi-paragraph bio with customizable content
+- **Contact Links**: GitHub and LinkedIn integration
 
 ## Local Development
 
 ### Prerequisites
 
-- Node.js 18+ and npm
+- Node.js 18+ and pnpm
 
 ### Setup
 
 1. Install dependencies:
 ```bash
-npm install
+pnpm install
 ```
 
 2. Start the development server:
 ```bash
-npm run dev
+pnpm dev
 ```
 
 The site will be available at `http://localhost:4321`
 
 ### Available Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build locally
-- `npm run astro` - Run Astro CLI commands
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm preview` - Preview production build locally
+- `pnpm astro` - Run Astro CLI commands
 
 ## Deployment
 
 ### Deploying to Vercel
 
-This project is configured for deployment on Vercel with a custom domain (`zeddjaykay.dev`).
+This project is configured for deployment on Vercel with a custom domain.
 
 #### Option 1: Deploy via Vercel CLI
 
 1. Install Vercel CLI:
 ```bash
-npm i -g vercel
+pnpm add -g vercel
 ```
 
 2. Deploy:
@@ -82,7 +82,7 @@ vercel
 
 1. In your Vercel project dashboard, go to **Settings** → **Domains**
 
-2. Add your custom domain: `zeddjaykay.dev`
+2. Add your custom domain
 
 3. Follow Vercel's instructions to configure your DNS records:
    - Add an A record pointing to Vercel's IP addresses, OR
@@ -98,18 +98,22 @@ The project uses the `@astrojs/vercel` adapter configured in `astro.config.mjs` 
 
 ```
 /
-├── public/          # Static assets (images, favicon, etc.)
+├── public/          # Static assets (favicon, etc.)
 ├── src/
 │   ├── components/  # Reusable Astro components
 │   │   ├── Footer.astro
 │   │   ├── Navigation.astro
+│   │   ├── ThemeToggle.astro
 │   │   └── ProjectCard.astro
 │   ├── layouts/     # Page layouts
 │   │   └── BaseLayout.astro
-│   └── pages/       # Route pages
-│       ├── index.astro
-│       ├── projects.astro
-│       └── contact.astro
+│   ├── pages/       # Route pages
+│   │   ├── index.astro
+│   │   ├── projects.astro
+│   │   └── contact.astro
+│   └── utils/       # Utility functions and constants
+│       ├── constants.ts
+│       └── theme.ts
 ├── astro.config.mjs # Astro configuration
 ├── package.json
 └── tsconfig.json
@@ -117,24 +121,35 @@ The project uses the `@astrojs/vercel` adapter configured in `astro.config.mjs` 
 
 ## Customization
 
+### Updating Personal Information
+
+Edit the `SITE_CONFIG` object in `src/utils/constants.ts` to update:
+- Name
+- Title
+- Description
+- Bio (array of paragraphs)
+
+### Updating Contact Links
+
+Edit the `CONTACT_LINKS` object in `src/utils/constants.ts` to update:
+- GitHub URL
+- LinkedIn URL
+
 ### Updating Projects
 
-Edit the `projects` array in `src/pages/projects.astro` to add, remove, or modify project entries.
-
-### Updating Contact Information
-
-Edit the contact details in `src/pages/contact.astro`.
+Edit the `PROJECTS` array in `src/utils/constants.ts` to add, remove, or modify project entries.
 
 ### Styling
 
-Global styles and CSS variables are defined in `src/layouts/BaseLayout.astro`. Component-specific styles are scoped within each component file.
+Global styles and CSS variables (including theme colors) are defined in `src/layouts/BaseLayout.astro`. Component-specific styles are scoped within each component file.
 
-### Adding Screenshots
+### Theme Customization
 
-1. Place project screenshots in the `public/` directory
-2. Reference them in the project data using the `screenshot` property
+Theme colors can be customized in `src/layouts/BaseLayout.astro`:
+- Light mode colors are defined under `[data-theme="light"]`
+- Dark mode colors are defined under `[data-theme="dark"]`
+- Default theme is dark mode
 
 ## License
 
 All rights reserved.
-
