@@ -1,18 +1,10 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
-
-const currentPath = Astro.url.pathname;
 ---
 
 <nav class="nav">
   <div class="nav-container">
-    <a href="/" class="nav-logo">Zarak J. Khattak</a>
     <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="/" class={currentPath === '/' ? 'active' : ''}>Home</a></li>
-        <li><a href="/projects" class={currentPath === '/projects' ? 'active' : ''}>Projects</a></li>
-        <li><a href="/contact" class={currentPath === '/contact' ? 'active' : ''}>Contact</a></li>
-      </ul>
       <ThemeToggle />
     </div>
   </div>
@@ -20,7 +12,6 @@ const currentPath = Astro.url.pathname;
 
 <style>
   .nav {
-    border-bottom: 1px solid var(--color-border);
     background-color: var(--color-bg);
     position: sticky;
     top: 0;
@@ -32,18 +23,8 @@ const currentPath = Astro.url.pathname;
     margin: 0 auto;
     padding: var(--spacing-sm) var(--spacing-md);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-  }
-
-  .nav-logo {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-text);
-  }
-
-  .nav-logo:hover {
-    color: var(--color-accent);
   }
 
   .nav-right {
@@ -52,33 +33,12 @@ const currentPath = Astro.url.pathname;
     gap: var(--spacing-md);
   }
 
-  .nav-links {
-    display: flex;
-    list-style: none;
-    gap: var(--spacing-md);
-  }
-
-  .nav-links a {
-    color: var(--color-text-light);
-    font-weight: 500;
-    transition: color 0.2s ease;
-  }
-
-  .nav-links a:hover,
-  .nav-links a.active {
-    color: var(--color-accent);
-  }
-
   @media (max-width: 768px) {
     .nav-container {
       padding: var(--spacing-sm);
     }
 
     .nav-right {
-      gap: var(--spacing-sm);
-    }
-
-    .nav-links {
       gap: var(--spacing-sm);
     }
   }

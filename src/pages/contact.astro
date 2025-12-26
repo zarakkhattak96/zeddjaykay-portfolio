@@ -2,9 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import { SITE_CONFIG, CONTACT_LINKS } from '../utils/constants';
 ---
 
-<BaseLayout title="Contact - Zarak J. Khattak">
+<BaseLayout title={`Contact - ${SITE_CONFIG.name}`}>
   <Navigation />
   <main class="main">
     <section class="contact-section">
@@ -15,20 +16,17 @@ import Footer from '../components/Footer.astro';
           Feel free to reach out through any of the channels below.
         </p>
         <div class="contact-content">
-          <div class="contact-item">
-            <h3>Email</h3>
-            <a href="mailto:contact@zeddjaykay.dev">contact@zeddjaykay.dev</a>
-          </div>
+         
           <div class="contact-item">
             <h3>GitHub</h3>
-            <a href="https://github.com/zeddjaykay" target="_blank" rel="noopener noreferrer">
-              github.com/zeddjaykay
+            <a href={CONTACT_LINKS.github} target="_blank" rel="noopener noreferrer">
+              {CONTACT_LINKS.github.replace('https://', '')}
             </a>
           </div>
           <div class="contact-item">
             <h3>LinkedIn</h3>
-            <a href="https://linkedin.com/in/zeddjaykay" target="_blank" rel="noopener noreferrer">
-              linkedin.com/in/zeddjaykay
+            <a href={CONTACT_LINKS.linkedin} target="_blank" rel="noopener noreferrer">
+              {CONTACT_LINKS.linkedin.replace('https://www.', '')}
             </a>
           </div>
         </div>

@@ -1,10 +1,12 @@
 ---
+import { SITE_CONFIG } from '../utils/constants';
+
 interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = "Personal portfolio showcasing backend development, database design, and full-stack projects" } = Astro.props;
+const { title, description = SITE_CONFIG.description } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,13 +18,15 @@ const { title, description = "Personal portfolio showcasing backend development,
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <script>
-      // Prevent flash of unstyled content by setting theme immediately
+    <script is:inline>
       (function() {
-        const stored = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = stored || (prefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
+        try {
+          const stored = localStorage.getItem('theme');
+          const theme = stored || 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
       })();
     </script>
   </head>
@@ -48,16 +52,6 @@ const { title, description = "Personal portfolio showcasing backend development,
   }
 
   :root,
-  [data-theme="light"] {
-    --color-text: #1a1a1a;
-    --color-text-light: #666;
-    --color-bg: #ffffff;
-    --color-bg-alt: #f8f9fa;
-    --color-border: #e0e0e0;
-    --color-accent: #2563eb;
-    --color-accent-hover: #1d4ed8;
-  }
-
   [data-theme="dark"] {
     --color-text: #e5e5e5;
     --color-text-light: #a0a0a0;
@@ -66,6 +60,16 @@ const { title, description = "Personal portfolio showcasing backend development,
     --color-border: #333333;
     --color-accent: #60a5fa;
     --color-accent-hover: #93c5fd;
+  }
+
+  [data-theme="light"] {
+    --color-text: #1a1a1a;
+    --color-text-light: #666;
+    --color-bg: #ffffff;
+    --color-bg-alt: #f8f9fa;
+    --color-border: #e0e0e0;
+    --color-accent: #2563eb;
+    --color-accent-hover: #1d4ed8;
   }
 
   html {

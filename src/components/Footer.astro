@@ -1,17 +1,18 @@
 ---
+import { SITE_CONFIG } from '../utils/constants';
+
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="footer">
   <div class="footer-container">
-    <p>&copy; {currentYear} Zarak J. Khattak All rights reserved.</p>
+    <p>&copy; {currentYear} {SITE_CONFIG.name} All rights reserved.</p>
   </div>
 </footer>
 
 <style>
   .footer {
-    border-top: 1px solid var(--color-border);
-    background-color: var(--color-bg-alt);
+    background-color: var(--color-bg);
     margin-top: auto;
   }
 

@@ -20,37 +20,48 @@
 
 <script>
   (function() {
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
+    function initThemeToggle() {
+      const themeToggle = document.getElementById('theme-toggle');
+      const html = document.documentElement;
+      
+      if (!html.getAttribute('data-theme')) {
+        html.setAttribute('data-theme', 'dark');
+        try {
+          if (!localStorage.getItem('theme')) {
+            localStorage.setItem('theme', 'dark');
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      
+      const setTheme = (theme: string) => {
+        html.setAttribute('data-theme', theme);
+        try {
+          localStorage.setItem('theme', theme);
+        } catch (e) {
+          console.error(e);
+        }
+      };
+      
+      themeToggle?.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+      });
+    }
     
-    // Get theme from localStorage or default to light
-    const getTheme = () => {
-      const stored = localStorage.getItem('theme');
-      if (stored) return stored;
-      // Check system preference
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    };
-    
-    // Set theme
-    const setTheme = (theme) => {
-      html.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-    };
-    
-    // Initialize theme
-    setTheme(getTheme());
-    
-    // Toggle theme
-    themeToggle?.addEventListener('click', () => {
-      const currentTheme = html.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      setTheme(newTheme);
-    });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initThemeToggle);
+    } else {
+      initThemeToggle();
+    }
   })();
 </script>
 
 <style>
   .theme-toggle {
+    position: relative;
     background: none;
     border: 1px solid var(--color-border);
     border-radius: 50%;
@@ -76,25 +87,25 @@
     transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
-  .moon-icon {
+  .sun-icon {
     position: absolute;
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+
+  .moon-icon {
+    opacity: 0;
+    transform: rotate(-90deg);
+  }
+
+  :global([data-theme="light"]) .sun-icon {
     opacity: 0;
     transform: rotate(90deg);
   }
 
-  .sun-icon {
+  :global([data-theme="light"]) .moon-icon {
     opacity: 1;
     transform: rotate(0deg);
-  }
-
-  [data-theme="dark"] .moon-icon {
-    opacity: 1;
-    transform: rotate(0deg);
-  }
-
-  [data-theme="dark"] .sun-icon {
-    opacity: 0;
-    transform: rotate(-90deg);
   }
 
   @media (max-width: 768px) {

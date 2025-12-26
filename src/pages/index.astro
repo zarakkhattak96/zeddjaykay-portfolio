@@ -2,63 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import { SITE_CONFIG, CONTACT_LINKS } from '../utils/constants';
 ---
 
-<BaseLayout title="Zarak J. Khattak - Full-Stack Developer">
+<BaseLayout title={SITE_CONFIG.title}>
   <Navigation />
   <main class="main">
     <section class="hero">
       <div class="container">
-        <h1>Zarak J. Khattak</h1>
-        <p class="subtitle">Full-Stack Developer</p>
-        <p class="intro">
-          Backend-focused developer with 3 years of experience building production-ready applications 
-          in health tech and crowdfunding platforms. Specialized in database design, API development, 
-          and scalable system architecture.
-        </p>
-      </div>
-    </section>
-
-    <section class="about">
-      <div class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
-          <p>
-            I'm a full-stack developer with a strong emphasis on backend engineering and database design. 
-            Over the past 3 years, I've worked on production applications in the health tech and crowdfunding 
-            sectors, focusing on building robust, scalable systems that handle real-world user demands.
-          </p>
-          <p>
-            My expertise includes designing efficient database schemas, building RESTful and GraphQL APIs, 
-            implementing authentication and authorization systems, and optimizing application performance. 
-            I'm passionate about writing clean, maintainable code and following best practices in software 
-            engineering.
-          </p>
-          <p>
-            While I excel at backend development, I also have experience with modern frontend frameworks, 
-            allowing me to deliver complete full-stack solutions. I believe in building applications that 
-            are not only functional but also performant, secure, and user-friendly.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="skills">
-      <div class="container">
-        <h2>Core Expertise</h2>
-        <div class="skills-grid">
-          <div class="skill-item">
-            <h3>Backend Development</h3>
-            <p>Building scalable APIs, microservices, and server-side applications</p>
-          </div>
-          <div class="skill-item">
-            <h3>Database Design</h3>
-            <p>Designing efficient schemas, optimizing queries, and managing data integrity</p>
-          </div>
-          <div class="skill-item">
-            <h3>Full-Stack Solutions</h3>
-            <p>End-to-end development from database to user interface</p>
-          </div>
+        <h1 class="animated-title">{SITE_CONFIG.name}</h1>
+        <p class="description">{SITE_CONFIG.bio}</p>
+        <div class="contact">
+          <a href={CONTACT_LINKS.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href={CONTACT_LINKS.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
     </section>
@@ -69,91 +25,69 @@ import Footer from '../components/Footer.astro';
 <style>
   .main {
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 200px);
   }
 
   .container {
-    max-width: var(--max-width);
+    max-width: 700px;
     margin: 0 auto;
     padding: var(--spacing-md);
+    text-align: center;
   }
 
   .hero {
     padding: var(--spacing-xl) var(--spacing-md);
-    text-align: center;
-    background-color: var(--color-bg-alt);
   }
 
   .hero h1 {
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .subtitle {
-    font-size: 1.25rem;
-    color: var(--color-text-light);
     margin-bottom: var(--spacing-md);
+    font-size: 3rem;
   }
 
-  .intro {
-    max-width: 800px;
-    margin: 0 auto;
+  .animated-title {
+    animation: fadeInUp 1s ease-out;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .description {
+    max-width: 600px;
+    margin: 0 auto var(--spacing-lg);
     font-size: 1.125rem;
     line-height: 1.8;
     color: var(--color-text);
   }
 
-  .about {
-    padding: var(--spacing-xl) var(--spacing-md);
-  }
-
-  .about h2 {
-    margin-bottom: var(--spacing-md);
-    text-align: center;
-  }
-
-  .about-content {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .about-content p {
-    margin-bottom: var(--spacing-md);
-    line-height: 1.8;
-    color: var(--color-text);
-  }
-
-  .skills {
-    padding: var(--spacing-xl) var(--spacing-md);
-    background-color: var(--color-bg-alt);
-  }
-
-  .skills h2 {
-    margin-bottom: var(--spacing-lg);
-    text-align: center;
-  }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  .contact {
+    display: flex;
+    justify-content: end;
+    align-items: center;
     gap: var(--spacing-md);
-    max-width: 1000px;
-    margin: 0 auto;
+    flex-wrap: wrap;
   }
 
-  .skill-item {
-    background-color: var(--color-bg);
-    padding: var(--spacing-md);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-  }
-
-  .skill-item h3 {
-    margin-bottom: var(--spacing-sm);
-    color: var(--color-accent);
-  }
-
-  .skill-item p {
+  .contact a {
     color: var(--color-text-light);
-    line-height: 1.6;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .contact a:hover {
+    color: var(--color-accent);
   }
 
   @media (max-width: 768px) {
@@ -161,13 +95,17 @@ import Footer from '../components/Footer.astro';
       padding: var(--spacing-lg) var(--spacing-sm);
     }
 
-    .about,
-    .skills {
-      padding: var(--spacing-lg) var(--spacing-sm);
+    .hero h1 {
+      font-size: 2.5rem;
     }
 
-    .intro {
+    .description {
       font-size: 1rem;
+    }
+
+    .contact {
+      flex-direction: column;
+      gap: var(--spacing-sm);
     }
   }
 </style>
