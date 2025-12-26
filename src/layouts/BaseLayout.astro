@@ -87,13 +87,13 @@ const { title, description = SITE_CONFIG.description } = Astro.props;
   }
 
   a {
-    color: var(--color-accent);
+    color: var(--color-text);
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: opacity 0.2s ease;
   }
 
   a:hover {
-    color: var(--color-accent-hover);
+    opacity: 0.7;
   }
 
   h1, h2, h3, h4, h5, h6 {

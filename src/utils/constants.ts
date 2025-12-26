@@ -9,6 +9,6 @@ export const SITE_CONFIG = {
   name: "Zarak J. Khattak",
   title: "Zarak J. Khattak - Full-Stack Developer",
   description:
-    "Personal portfolio showcasing backend development, database design, and full-stack projects",
-  bio: "Backend-focused developer with 3 years of experience building production-ready applications in health tech and crowdfunding platforms. Specialized in database design, API development, and scalable system architecture.",
+    "Personal portfolio showcasing full-stack development, database design, and production-ready applications",
+  bio: "I am a passionate software engineer who enjoys building production-ready applications and exploring new architectures, frameworks, and technologies. I currently work at Productbox, where I focus on designing scalable backend systems and databases while also creating clean and functional frontend interfaces. Outside of work, I love playing games, watching movies, and listening to music, which keep me inspired and energized to create innovative software solutions.",
 };
