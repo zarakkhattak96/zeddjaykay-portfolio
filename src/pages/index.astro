@@ -11,7 +11,11 @@ import { SITE_CONFIG, CONTACT_LINKS } from '../utils/constants';
     <section class="hero">
       <div class="container">
         <h1 class="animated-title">{SITE_CONFIG.name}</h1>
-        <p class="description" set:html={SITE_CONFIG.bio.replace('Productbox', '<a href="https://productbox.dev/" target="_blank" rel="noopener noreferrer" class="bio-link">Productbox</a>')}></p>
+        <div class="description">
+          {SITE_CONFIG.bio.map((paragraph) => (
+            <p set:html={paragraph.replace('Productbox', '<a href="https://productbox.dev/" target="_blank" rel="noopener noreferrer" class="bio-link">Productbox</a>')}></p>
+          ))}
+        </div>
         <div class="contact">
           <a href={CONTACT_LINKS.github} target="_blank" rel="noopener noreferrer">GitHub</a>
           <a href={CONTACT_LINKS.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -72,7 +76,15 @@ import { SITE_CONFIG, CONTACT_LINKS } from '../utils/constants';
     color: var(--color-text);
   }
 
-  p.description a.bio-link {
+  .description p {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .description p:last-child {
+    margin-bottom: 0;
+  }
+
+  .description a.bio-link {
     color: var(--color-text-light) !important;
     font-weight: 700 !important;
     text-decoration: underline;
