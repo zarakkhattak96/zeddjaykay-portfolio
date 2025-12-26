@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Zarak J. Khattak - Full-Stack Developer">
+  <Navigation />
+  <main class="main">
+    <section class="hero">
+      <div class="container">
+        <h1>Zarak J. Khattak</h1>
+        <p class="subtitle">Full-Stack Developer</p>
+        <p class="intro">
+          Backend-focused developer with 3 years of experience building production-ready applications 
+          in health tech and crowdfunding platforms. Specialized in database design, API development, 
+          and scalable system architecture.
+        </p>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+          <p>
+            I'm a full-stack developer with a strong emphasis on backend engineering and database design. 
+            Over the past 3 years, I've worked on production applications in the health tech and crowdfunding 
+            sectors, focusing on building robust, scalable systems that handle real-world user demands.
+          </p>
+          <p>
+            My expertise includes designing efficient database schemas, building RESTful and GraphQL APIs, 
+            implementing authentication and authorization systems, and optimizing application performance. 
+            I'm passionate about writing clean, maintainable code and following best practices in software 
+            engineering.
+          </p>
+          <p>
+            While I excel at backend development, I also have experience with modern frontend frameworks, 
+            allowing me to deliver complete full-stack solutions. I believe in building applications that 
+            are not only functional but also performant, secure, and user-friendly.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills">
+      <div class="container">
+        <h2>Core Expertise</h2>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <h3>Backend Development</h3>
+            <p>Building scalable APIs, microservices, and server-side applications</p>
+          </div>
+          <div class="skill-item">
+            <h3>Database Design</h3>
+            <p>Designing efficient schemas, optimizing queries, and managing data integrity</p>
+          </div>
+          <div class="skill-item">
+            <h3>Full-Stack Solutions</h3>
+            <p>End-to-end development from database to user interface</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .main {
+    flex: 1;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-md);
+  }
+
+  .hero {
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+    background-color: var(--color-bg-alt);
+  }
+
+  .hero h1 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .intro {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text);
+  }
+
+  .about {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+
+  .about h2 {
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+  }
+
+  .about-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .about-content p {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.8;
+    color: var(--color-text);
+  }
+
+  .skills {
+    padding: var(--spacing-xl) var(--spacing-md);
+    background-color: var(--color-bg-alt);
+  }
+
+  .skills h2 {
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .skill-item {
+    background-color: var(--color-bg);
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+
+  .skill-item h3 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-accent);
+  }
+
+  .skill-item p {
+    color: var(--color-text-light);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: var(--spacing-lg) var(--spacing-sm);
+    }
+
+    .about,
+    .skills {
+      padding: var(--spacing-lg) var(--spacing-sm);
+    }
+
+    .intro {
+      font-size: 1rem;
+    }
+  }
+</style>
+

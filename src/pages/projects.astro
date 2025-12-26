@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = [
+  {
+    name: "HealthTech Platform",
+    description: "A comprehensive health management platform with patient records, appointment scheduling, and telemedicine capabilities. Built with scalable microservices architecture.",
+    techStack: ["Node.js", "PostgreSQL", "Redis", "GraphQL", "React", "Docker"],
+    role: "Backend Lead / Full-Stack Developer",
+  },
+  {
+    name: "Crowdfunding Platform",
+    description: "A full-featured crowdfunding platform supporting campaigns, payments, and social features. Handles high transaction volumes with robust payment processing.",
+    techStack: ["Python", "Django", "PostgreSQL", "Stripe API", "AWS", "Vue.js"],
+    role: "Full-Stack Developer / Database Architect",
+  },
+  {
+    name: "API Gateway Service",
+    description: "Centralized API gateway managing authentication, rate limiting, and request routing for multiple microservices. Built for high availability and performance.",
+    techStack: ["Go", "Kong", "PostgreSQL", "Kubernetes", "Prometheus"],
+    role: "Backend Developer / DevOps",
+  },
+  {
+    name: "Real-time Analytics Dashboard",
+    description: "Real-time data visualization platform for health metrics and campaign analytics. Processes millions of events with sub-second latency.",
+    techStack: ["Node.js", "TimescaleDB", "WebSockets", "React", "D3.js", "Kafka"],
+    role: "Full-Stack Developer / Data Engineer",
+  },
+  {
+    name: "Payment Processing System",
+    description: "Secure payment processing system with fraud detection, multi-currency support, and compliance with PCI-DSS standards.",
+    techStack: ["Java", "Spring Boot", "PostgreSQL", "Stripe", "Redis", "AWS"],
+    role: "Backend Developer / Security Specialist",
+  },
+  {
+    name: "User Authentication Service",
+    description: "Scalable authentication and authorization service supporting OAuth2, JWT, and multi-factor authentication for multiple applications.",
+    techStack: ["Node.js", "TypeScript", "PostgreSQL", "Redis", "OAuth2", "JWT"],
+    role: "Backend Developer / Security Architect",
+  },
+  {
+    name: "Data Migration Tool",
+    description: "Enterprise-grade data migration tool for moving large datasets between systems with zero downtime and data validation.",
+    techStack: ["Python", "PostgreSQL", "MongoDB", "AWS S3", "Apache Airflow"],
+    role: "Backend Developer / Database Engineer",
+  },
+];
+---
+
+<BaseLayout title="Projects - Zarak J. Khattak">
+  <Navigation />
+  <main class="main">
+    <section class="projects-section">
+      <div class="container">
+        <h1>Projects</h1>
+        <p class="section-intro">
+          A selection of production applications I've built, focusing on backend architecture, 
+          database design, and full-stack development.
+        </p>
+        <div class="projects-grid">
+          {projects.map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .main {
+    flex: 1;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-md);
+  }
+
+  .projects-section {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+
+  .projects-section h1 {
+    margin-bottom: var(--spacing-sm);
+    text-align: center;
+  }
+
+  .section-intro {
+    text-align: center;
+    color: var(--color-text-light);
+    max-width: 700px;
+    margin: 0 auto var(--spacing-lg);
+    font-size: 1.125rem;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  @media (max-width: 768px) {
+    .projects-section {
+      padding: var(--spacing-lg) var(--spacing-sm);
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
