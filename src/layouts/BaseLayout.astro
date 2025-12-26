@@ -16,6 +16,15 @@ const { title, description = "Personal portfolio showcasing backend development,
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script>
+      // Prevent flash of unstyled content by setting theme immediately
+      (function() {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
   <body>
     <slot />
@@ -30,6 +39,16 @@ const { title, description = "Personal portfolio showcasing backend development,
   }
 
   :root {
+    --max-width: 1200px;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+  }
+
+  :root,
+  [data-theme="light"] {
     --color-text: #1a1a1a;
     --color-text-light: #666;
     --color-bg: #ffffff;
@@ -37,12 +56,16 @@ const { title, description = "Personal portfolio showcasing backend development,
     --color-border: #e0e0e0;
     --color-accent: #2563eb;
     --color-accent-hover: #1d4ed8;
-    --max-width: 1200px;
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 2rem;
-    --spacing-lg: 3rem;
-    --spacing-xl: 4rem;
+  }
+
+  [data-theme="dark"] {
+    --color-text: #e5e5e5;
+    --color-text-light: #a0a0a0;
+    --color-bg: #121212;
+    --color-bg-alt: #1e1e1e;
+    --color-border: #333333;
+    --color-accent: #60a5fa;
+    --color-accent-hover: #93c5fd;
   }
 
   html {
